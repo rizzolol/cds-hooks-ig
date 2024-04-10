@@ -1,0 +1,17 @@
+# Mac
+*.DS_STORE
+
+# python
+env/
+
+# mkdocs
+site/
+
+# IG publisher
+.DS_Store
+Thumbs.db
+/fsh-generated
+/input-cache
+/output
+/temp
+/template
