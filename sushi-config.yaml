@@ -78,11 +78,23 @@ parameters:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
-  Service interaction: services.html
+  Services: services.html
   Security: security.html
-  Extensions and data types: extensions-datatypes.html
-  Hooks: hooks.html
-
+  Extensions and Data Types: extensions-datatypes.html
+  Hook Definitions: hooks.html
+  Defined Hooks:
+    allergyintolerance-create: allergyintolerance-create.html
+    appointment-book: appointment-book.html
+    encounter-discharge: encounter-discharge.html
+    encounter-start: encounter-start.html
+    medication-refill: medication-refill.html
+    order-dispatch: order-dispatch.html
+    order-select: order-select.html
+    order-sign: order-sign.html
+    patient-view: patient-view.html
+    problem-list-item-create: problem-list-item-create.html
+    medication-prescribe: medication-prescribe.html
+    order-review: order-review.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │
