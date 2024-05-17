@@ -11,10 +11,7 @@
 <page key="artifacts" name="Artifacts Summary"/>
 <page key="encounter-discharge" name="Encounter Discharge"/>
 <page key="encounter-start" name="Encounter Start"/>
-<page key="extensions-datatypes" name="Extensions Datatypes"/>
 <page key="index" name="Home"/>
-<page key="hooks" name="Hooks"/>
-<page key="hooks-content" name="Hooks Content"/>
 <page key="medication-prescribe" name="Medication Prescribe"/>
 <page key="medication-refill" name="Medication Refill"/>
 <page key="order-dispatch" name="Order Dispatch"/>
@@ -23,7 +20,5 @@
 <page key="order-sign" name="Order Sign"/>
 <page key="patient-view" name="Patient View"/>
 <page key="problem-list-item-create" name="Problem List Item Create"/>
-<page key="security" name="Security"/>
-<page key="services" name="Services"/>
 <page key="toc" name="Table of Contents"/>
 </specification>

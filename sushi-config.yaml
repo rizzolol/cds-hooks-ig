@@ -78,10 +78,6 @@ parameters:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
-  Services: services.html
-  Security: security.html
-  Extensions and Data Types: extensions-datatypes.html
-  Hook Definitions: hooks.html
   Defined Hooks:
     allergyintolerance-create: allergyintolerance-create.html
     appointment-book: appointment-book.html
@@ -95,7 +91,6 @@ menu:
     problem-list-item-create: problem-list-item-create.html
     medication-prescribe: medication-prescribe.html
     order-review: order-review.html
-
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │
 # │  resource. These properties are less commonly needed than those above.                         │
