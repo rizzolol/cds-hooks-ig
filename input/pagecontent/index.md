@@ -40,7 +40,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ### Use of JSON
 
-All data exchanged through production RESTful APIs MUST be sent and received as [JSON](https://tools.ietf.org/html/rfc8259) (JavaScript Object Notation) structures and are transmitted over HTTPS. See [Security and Safety](security.html#security-and-safety) section.
+All data exchanged through production RESTful APIs MUST be sent and received as [JSON](https://tools.ietf.org/html/rfc8259) (JavaScript Object Notation) structures and are transmitted over HTTPS. See [Security and Safety](#security-and-safety) section.
 
 **Null and empty JSON elements**
 
@@ -88,7 +88,7 @@ Field | Optionality | Type | Description
 `usageRequirements`| OPTIONAL | *string* | Human-friendly description of any preconditions for the use of this CDS Service.
 {:.grid}
 
-Note that a CDS server can host multiple entries of CDS service with the same `id` for different `hook`s. This allows a service to update its advice based on changes in workflow as discussed in [*update stale guidance*](security.html#update-stale-guidance).
+Note that a CDS server can host multiple entries of CDS service with the same `id` for different `hook`s. This allows a service to update its advice based on changes in workflow as discussed in [*update stale guidance*](#update-stale-guidance).
 
 ### HTTP Status Codes
 
@@ -145,7 +145,7 @@ curl "https://example.com/cds-services"
 
 ### HTTP Request
 
-A CDS Client SHALL call a CDS Service by `POST`ing a JSON document to the service as described in this section. The CDS Service endpoint can be constructed from the CDS Service base URL and an individual service id as `{baseUrl}/cds-services/{service.id}`. CDS Clients may add additional requirements for the triggering of a hook, based upon the user, workflow, CDS Service or other reasons (e.g. if the service is provided by a payer, the patient has active coverage with that payer). See [Trusting CDS Services](security.html#trusting-cds-services) for additional considerations.
+A CDS Client SHALL call a CDS Service by `POST`ing a JSON document to the service as described in this section. The CDS Service endpoint can be constructed from the CDS Service base URL and an individual service id as `{baseUrl}/cds-services/{service.id}`. CDS Clients may add additional requirements for the triggering of a hook, based upon the user, workflow, CDS Service or other reasons (e.g. if the service is provided by a payer, the patient has active coverage with that payer). See [Trusting CDS Services](#trusting-cds-services) for additional considerations.
 
 The request SHALL include a JSON `POST` body with the following input fields:
 
@@ -536,7 +536,7 @@ If your CDS Service has no decision support for the user, your service should re
 }
 ```
 
-Clients SHOULD remove `cards` returned by previous invocations of a `hook` to a service with the same `id` when a new `hook` is triggered (see [*update stale guidance*](security.html#update-stale-guidance)).
+Clients SHOULD remove `cards` returned by previous invocations of a `hook` to a service with the same `id` when a new `hook` is triggered (see [*update stale guidance*](#update-stale-guidance)).
 
 ### Card Attributes
 
@@ -551,7 +551,7 @@ Field | Optionality | Type | Description
 `source` | REQUIRED | *object* | Grouping structure for the **[Source](#source)** of the information displayed on this card. The source should be the primary source of guidance for the decision support the card represents.
 `suggestions` | OPTIONAL | *array* of **[Suggestions](#suggestion)** | Allows a service to suggest a set of changes in the context of the current activity (e.g.  changing the dose of a medication currently being prescribed, for the `order-sign` activity). If suggestions are present, `selectionBehavior` MUST also be provided.
 `selectionBehavior` | CONDITIONAL | *string* | Describes the intended selection behavior of the suggestions in the card. Allowed values are: `at-most-one`, indicating that the user may choose none or at most one of the suggestions; `any`, indicating that the end user may choose any number of suggestions including none of them and all of them. CDS Clients that do not understand the value MUST treat the card as an error.
-`overrideReasons` | OPTIONAL | *array* of **Coding** | Override reasons can be selected by the end user when overriding a card without taking the suggested recommendations. The CDS service MAY return a list of override reasons to the CDS client. If override reasons are present, the CDS Service MUST populate a `display` value for each reason's [Coding](extensions-datatypes.html#coding). The CDS Client SHOULD present these reasons to the clinician when they dismiss a card. A CDS Client MAY augment the override reasons presented to the user with its own reasons.
+`overrideReasons` | OPTIONAL | *array* of **Coding** | Override reasons can be selected by the end user when overriding a card without taking the suggested recommendations. The CDS service MAY return a list of override reasons to the CDS client. If override reasons are present, the CDS Service MUST populate a `display` value for each reason's [Coding](#coding). The CDS Client SHOULD present these reasons to the clinician when they dismiss a card. A CDS Client MAY augment the override reasons presented to the user with its own reasons.
 `links` | OPTIONAL | *array* of **[Links](#link)** | Allows a service to suggest a link to an app that the user might want to run for additional information or to help guide a decision.
 {:.grid}
 
@@ -564,7 +564,7 @@ Field | Optionality | Type | Description
 `label`| REQUIRED | *string* | A short, human-readable label to display for the source of the information displayed on this card. If a `url` is also specified, this MAY be the text for the hyperlink.
 `url` | OPTIONAL | *URL* | An optional absolute URL to load (via `GET`, in a browser context) when a user clicks on this link to learn more about the organization or data set that provided the information on this card. Note that this URL should not be used to supply a context-specific "drill-down" view of the information on this card. For that, use [card.link.url](#link) instead.
 `icon` | OPTIONAL | *URL* | An absolute URL to an icon for the source of this card. The icon returned by this URL SHOULD be a 100x100 pixel PNG image without any transparent regions. The CDS Client may ignore or scale the image during display as appropriate for user experience.
-`topic` | OPTIONAL | **[Coding](extensions-datatypes.html#coding)** | A *topic* describes the content of the card by providing a high-level categorization that can be useful for filtering, searching or ordered display of related cards in the CDS client's UI. This specification does not prescribe a standard set of topics.
+`topic` | OPTIONAL | **[Coding](#coding)** | A *topic* describes the content of the card by providing a high-level categorization that can be useful for filtering, searching or ordered display of related cards in the CDS client's UI. This specification does not prescribe a standard set of topics.
 {:.grid}
 
 Below is an example `source` parameter:
@@ -649,7 +649,7 @@ The following example illustrates a delete action:
 
 #### Reasons for rejecting a card
 
-**overrideReasons** is an array of **[Coding](extensions-datatypes.html#coding)** that captures a codified set of reasons an end user may select from as the rejection reason when rejecting the advice presented in the card. When using the coding object to represent a reason, CDS Services MUST provide a human readable text in the *display* property and CDS Clients MAY incorporate it into their user interface.
+**overrideReasons** is an array of **[Coding](#coding)** that captures a codified set of reasons an end user may select from as the rejection reason when rejecting the advice presented in the card. When using the coding object to represent a reason, CDS Services MUST provide a human readable text in the *display* property and CDS Clients MAY incorporate it into their user interface.
 
 This specification does not prescribe a standard set of override reasons; implementers are encouraged to submit suggestions for standardization.
 
@@ -818,14 +818,14 @@ Field | Optionality | Type | Description
 `card` | REQUIRED | *string* | The `card.uuid` from the CDS Hooks response. Uniquely identifies the card.
 `outcome` | REQUIRED | *string* | A value of `accepted` or `overridden`.
 `acceptedSuggestions` | CONDITIONAL | *array* | An array of json objects identifying one or more of the user's **AcceptedSuggestion**s. Required for `accepted` outcomes.
-`overrideReason` | OPTIONAL | **[OverrideReason](#overridereason)** | A json object capturing the override reason as a **[Coding](extensions-datatypes.html#coding)** as well as any comments entered by the user.
+`overrideReason` | OPTIONAL | **[OverrideReason](#overridereason)** | A json object capturing the override reason as a **[Coding](#coding)** as well as any comments entered by the user.
 `outcomeTimestamp` | REQUIRED | *string* | [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) representation of the date and time in Coordinated Universal Time (UTC) when action was taken on the card, as profiled in [section 5.6 of RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6). e.g. 1985-04-12T23:20:50.52Z
 {:.grid}
 
 
 ### Suggestion accepted
 
-The CDS Client can inform the service when one or more suggestions were accepted by POSTing a simple JSON object. The CDS Client authenticates to the CDS service as described in [Trusting CDS Clients](security.html#trusting-cds-clients).
+The CDS Client can inform the service when one or more suggestions were accepted by POSTing a simple JSON object. The CDS Client authenticates to the CDS service as described in [Trusting CDS Clients](#trusting-cds-clients).
 
 Upon the user accepting a suggestion (perhaps when she clicks a displayed label (e.g., button) from a "suggestion" card), the CDS Client informs the service by posting the card and suggestion `uuid`s to the CDS Service's feedback endpoint with an outcome of `accepted`.
 
@@ -892,7 +892,7 @@ Each **OverrideReason** is described by the following attributes, in the feedbac
 
 Field | Optionality | Type | Description
 ----- | ----- | ----- | --------
-`reason` | CONDITIONAL |**[Coding](extensions-datatypes.html#coding)** | The Coding object representing the override reason selected by the end user. Required if user selected an override reason from the list of reasons provided in the Card (instead of only leaving a userComment).
+`reason` | CONDITIONAL |**[Coding](#coding)** | The Coding object representing the override reason selected by the end user. Required if user selected an override reason from the list of reasons provided in the Card (instead of only leaving a userComment).
 `userComment` | OPTIONAL | *string* | The CDS Client may enable the clinician to further explain why the card was rejected with free text. That user comment may be communicated to the CDS Service as a `userComment`.
 {:.grid}
 
@@ -1065,13 +1065,13 @@ Authorization: Bearer eyJhbGciOiJFUzM4NCIsInR5cCI6IkpXVCIsImtpZCI6ImV4YW1wbGUta2
 
 [Cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/) is a [World Wide Web Consortium (W3C)](https://www.w3.org/Consortium/) standard mechanism that uses additional HTTP headers to enable a web browser to gain permission to access resources from an Internet domain different from that which the browser is currently accessing.  CORS is a client-side security mechanism with well-documented security risks.
 
-CDS Services and browser-based CDS Clients will require CORS support. A secure implementation guide for CORS is outside of the scope of this CDS Hooks specification. Organizations planning to implement CDS Hooks with CORS support are referred to the Cross-Origin Resource Sharing section of the [OWASP HTML5 Security Cheat Sheet]( https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html#cross-origin-resource-sharing).
+CDS Services and browser-based CDS Clients will require CORS support. A secure implementation guide for CORS is outside of the scope of this CDS Hooks specification. Organizations planning to implement CDS Hooks with CORS support are referred to the Cross-Origin Resource Sharing section of the [OWASP HTML5 Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html#cross-origin-resource-sharing).
 
 ### Update stale guidance
 
 In the case that CDS Hooks cards are persisted, clients should take care to ensure that stale guidance does not negatively impact patient care.
 
-CDS Services can update their previously returned guidance by returning a new set of `cards` when the service is invoked based on a different `hook`. CDS Services indicate this intent by providing multiple CDS Services with the same `id` in [discovery](services.html#discovery). Clients are recommended to remove `cards` returned by a previous invocation with the new `cards`.
+CDS Services can update their previously returned guidance by returning a new set of `cards` when the service is invoked based on a different `hook`. CDS Services indicate this intent by providing multiple CDS Services with the same `id` in [discovery](#discovery). Clients are recommended to remove `cards` returned by a previous invocation with the new `cards`.
 
 *STU NOTE: We are seeking implementer feedback on how best to balance the needs of performance for implementations with the critical patient safety issues raised by the potential for stale guidance.*
 
@@ -1136,7 +1136,7 @@ Field | Optionality | Type | Description
 ----- | ----- | ----- | --------
 `code` | REQUIRED | *string* | The code for what is being represented
 `system` | REQUIRED | *string* | The codesystem for this `code`.
-`display` | CONDITIONAL | *string* | A short, human-readable label to display. REQUIRED for [Override Reasons](services.html#overridereason) provided by the CDS Service, OPTIONAL for [Topic](services.html#source).
+`display` | CONDITIONAL | *string* | A short, human-readable label to display. REQUIRED for [Override Reasons](#overridereason) provided by the CDS Service, OPTIONAL for [Topic](#source).
 {:.grid}
 
 ## Hooks
@@ -1171,7 +1171,7 @@ Alternatively, a CDS Service may need the full patient resource in certain scena
 }
 ```
 
-See the section on [prefetch tokens](services.html#prefetch-tokens) for more information on how contextual information can be used to parameterize prefetch templates.
+See the section on [prefetch tokens](#prefetch-tokens) for more information on how contextual information can be used to parameterize prefetch templates.
 
 Consider another hook for when a new patient is being registered. In this case, it would likely be appropriate for the context to contain the full FHIR resource for the patient being registered as the patient may not be yet recorded in the CDS Client (and thus not available from the FHIR server) and CDS Services using this hook would predominantly be interested in the details of the patient being registered.
 
