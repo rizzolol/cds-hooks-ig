@@ -10,6 +10,8 @@ CDS Hooks is a vendor agnostic remote decision support standard. This repository
 
 Read the [CDS Hooks Quick Start](https://cds-hooks.org/quickstart/) and [watch an overview on youtube](https://www.youtube.com/watch?v=boZT7CHln5g&t=122s).
 
+See the [continuous integration HL7 FHIR CDS Hooks implementation guide](https://build.fhir.org/ig/HL7/cds-hooks/), previously published versions of the specifications, including [1.0](https://cds-hooks.hl7.org/1.0/) and [2.0](https://cds-hooks.hl7.org/2.0/), and [cds-hooks.org](https://cds-hooks.org/).
+
 ## Contributing
 
 We encourage and welcome any contributions to CDS Hooks.
