@@ -1,0 +1,3 @@
+[submodule "input/hooks"]
+	path = input/hooks
+	url = https://github.com/HL7/cds-hooks-library.git
